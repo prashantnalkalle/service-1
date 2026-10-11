@@ -1,0 +1,17 @@
+
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-6 offset-md-3">
+            <app-post-form 
+                (emitnewobj)="onAddpost($event)"
+                (emitupdateObj)="onUpdatepost($event)"
+            ></app-post-form>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-4 my-4" *ngFor="let post of postArr">
+        <app-post-list [postObj]="post" (emitremoveId)="onRemove($event)"></app-post-list>
+        </div>
+    </div>
+</div>
