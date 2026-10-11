@@ -20,7 +20,8 @@
         <button 
             (click)="onRemove()"
             mat-mini-fab
-            color="warn">
+            color="warn"
+            [disabled]="editId === postObj.id ">
             <mat-icon>delete</mat-icon>    
         </button>
     </div>

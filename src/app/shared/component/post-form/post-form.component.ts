@@ -47,6 +47,8 @@ export class PostFormComponent implements OnInit {
             this.snackbar.opensnackbar(err)
           }
         })
+    }else{
+      this.snackbar.opensnackbar(`Please Fill All The Fields!!`)
     }
 
   }
@@ -66,6 +68,8 @@ export class PostFormComponent implements OnInit {
 
           }
         })
+    }else{
+      this.snackbar.opensnackbar(`Please Fill All The Fields!!`)
     }
   }
 

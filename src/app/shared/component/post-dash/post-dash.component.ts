@@ -10,6 +10,7 @@ import { SnackbarService } from '../../service/snackbar.service';
 })
 export class PostDashComponent implements OnInit {
   postArr:Ipost[] =[]
+  editId: string | null = null
   constructor(
     private postservice:PostService,
     private snakbar:SnackbarService
@@ -36,14 +37,19 @@ export class PostDashComponent implements OnInit {
   onAddpost(post:Ipost) {
     this.postArr.unshift(post)
     this.snakbar.opensnackbar(`The New Post With Id ${post.id} Is Added Successfully!!`)
-
   }
 
   onUpdatepost(post:Ipost) {
     let getindex = this.postArr.findIndex(ele => ele.id === post.id)
     this.postArr[getindex] = post
+    this.editId = null
     this.snakbar.opensnackbar(`The Post With Id ${post.id} Is Updated Successfully!!`)
+  }
 
+  onEditpost(id: string) {
+    if (this.editId === null) {
+      this.editId = id
+    }
   }
 
   onRemove(id:string) {
@@ -51,5 +57,4 @@ export class PostDashComponent implements OnInit {
     this.postArr.splice(getindex,1)
     this.snakbar.opensnackbar(`The Post With Id ${id} Is Removed Successfully!!`)
   }
-
 }

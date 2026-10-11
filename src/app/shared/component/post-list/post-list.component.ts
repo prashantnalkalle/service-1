@@ -3,6 +3,7 @@ import { Ipost } from '../../module/interface';
 import { PostService } from '../../service/post.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { GetConfirmComponent } from '../get-confirm/get-confirm.component';
+import { SnackbarService } from '../../service/snackbar.service';
 
 @Component({
   selector: 'app-post-list',
@@ -12,9 +13,12 @@ import { GetConfirmComponent } from '../get-confirm/get-confirm.component';
 export class PostListComponent implements OnInit {
   @Input() postObj!:Ipost
   @Output() emitremoveId:EventEmitter<string> = new EventEmitter<string>()
+  @Output() emiteditId:EventEmitter<string> = new EventEmitter<string>()
+  @Input() editId:string | null = null
   constructor(
     private postservice:PostService,
     private mat_dialog:MatDialog,
+    private snackbar:SnackbarService
 
   ) { }
 
@@ -22,6 +26,12 @@ export class PostListComponent implements OnInit {
   }
 
   onEdit() {
+    if (this.editId !== null) {
+      this.snackbar.opensnackbar(`Please complete the update process`)
+      return
+    }
+
+    this.emiteditId.emit(this.postObj.id)
     this.postservice.editpost(this.postObj)
     window.scroll({
       top:0,
