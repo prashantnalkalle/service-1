@@ -1,0 +1,18 @@
+<h2>
+    {{msg}}
+</h2>
+
+<div class="d-flex justify-content-between">
+    <button 
+        mat-raised-button 
+        color="primary"
+        (click)="onclose(true)">
+        Yes    
+    </button>
+    <button 
+        mat-raised-button
+        color="warn"
+        (click)="onclose(false)">
+        No    
+    </button>
+</div>
